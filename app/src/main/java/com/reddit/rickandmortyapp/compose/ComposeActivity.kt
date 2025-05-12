@@ -16,9 +16,7 @@ class ComposeActivity : ComponentActivity() {
                 Column {
                     RickAndMortyAppBar()
                     Surface {
-                        Feed(
-                            posts = emptyList() /* TODO */
-                        )
+                        Feed()
                     }
                 }
             }

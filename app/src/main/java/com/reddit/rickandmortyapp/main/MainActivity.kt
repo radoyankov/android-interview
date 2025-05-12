@@ -12,14 +12,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.reddit.rickandmortyapp.compose.ComposeActivity
 import com.reddit.rickandmortyapp.compose.composables.RickAndMortyAppBar
 import com.reddit.rickandmortyapp.compose.theme.AppTheme
-import com.reddit.rickandmortyapp.noncompose.NonComposeActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Glide
+            .with(applicationContext)
+            .applyDefaultRequestOptions(
+                RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL) )
+
         setContent {
             AppTheme {
                 Column {
@@ -46,16 +53,6 @@ fun ActivityOptions() {
                 )
             }) {
             Text(text = "Compose")
-        }
-
-        Button(
-            modifier = Modifier.fillMaxWidth().weight(1f).padding(10.dp, 0.dp, 20.dp, 0.dp),
-            onClick = {
-                context.startActivity(
-                    Intent(context, NonComposeActivity::class.java)
-                )
-            }) {
-            Text(text = "Non Compose")
         }
     }
 }
