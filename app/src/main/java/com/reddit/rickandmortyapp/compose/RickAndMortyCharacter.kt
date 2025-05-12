@@ -24,32 +24,32 @@ import androidx.core.net.toUri
 @Composable
 fun RickAndMortyCharacter(character: RickAndMortyCharacter) {
     val c = LocalContext.current
-        Card(
-            shape = RoundedCornerShape(8.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(8.dp))
-                .clickable {
-                    c.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                        setData(character.url.toUri())
-                    })
-                }
-                .padding(8.dp)
-        ) {
-            Row {
-                GlideImage(
-                    model = character.image,
-                    contentDescription = "Image of ${character.name}",
-                    modifier = Modifier
-                        .align(alignment = Alignment.CenterVertically)
-                        .padding(end = 8.dp)
-                        .size(100.dp),
+    Card(
+        shape = RoundedCornerShape(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(8.dp))
+            .clickable {
+                c.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                    setData(character.url.toUri())
+                })
+            }
+            .padding(8.dp)
+    ) {
+        Row {
+            GlideImage(
+                model = character.image,
+                contentDescription = "Image of ${character.name}",
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterVertically)
+                    .padding(end = 8.dp)
+                    .size(100.dp),
 
                 )
-                Column {
-                    Text(text = character.name, modifier = Modifier.padding(8.dp))
-                    Text(text = character.origin.name, modifier = Modifier.padding(8.dp))
-                }
+            Column {
+                Text(text = character.name, modifier = Modifier.padding(8.dp))
+                Text(text = character.origin.name, modifier = Modifier.padding(8.dp))
             }
         }
+    }
 }

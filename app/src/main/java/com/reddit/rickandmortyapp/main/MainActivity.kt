@@ -25,7 +25,8 @@ class MainActivity : ComponentActivity() {
         Glide
             .with(applicationContext)
             .applyDefaultRequestOptions(
-                RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL) )
+                RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+            )
 
         setContent {
             AppTheme {
@@ -46,7 +47,10 @@ fun ActivityOptions() {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Button(
-            modifier = Modifier.fillMaxWidth().weight(1f).padding(20.dp, 0.dp, 10.dp, 0.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(20.dp, 0.dp, 10.dp, 0.dp),
             onClick = {
                 context.startActivity(
                     Intent(context, ComposeActivity::class.java)
