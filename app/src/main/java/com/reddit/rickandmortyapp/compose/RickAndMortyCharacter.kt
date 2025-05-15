@@ -1,6 +1,7 @@
 package com.reddit.rickandmortyapp.compose
 
 import android.content.Intent
+import android.os.Bundle
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,8 +19,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.GlideImage
 import com.reddit.rickandmortyapp.network.RickAndMortyCharacter
-import androidx.core.net.toUri
 
+
+const val CHARACTER_IMAGE_URL_KEY = "character"
 
 @Composable
 fun RickAndMortyCharacter(character: RickAndMortyCharacter) {
@@ -30,9 +32,12 @@ fun RickAndMortyCharacter(character: RickAndMortyCharacter) {
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
             .clickable {
-                c.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                    setData(character.url.toUri())
-                })
+                val context = c
+                val intent = Intent(context, CharacterActivity::class.java)
+                val playerBundle = Bundle()
+                playerBundle.putSerializable(CHARACTER_IMAGE_URL_KEY, character)
+                intent.putExtras(playerBundle)
+                context.startActivity(intent)
             }
             .padding(8.dp)
     ) {

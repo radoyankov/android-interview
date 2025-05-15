@@ -62,7 +62,8 @@ fun Feed() {
             contentPadding = padding,
             state = lazyListState,
             modifier = Modifier.fillMaxSize(),
-            reverseLayout = false
+            reverseLayout = false,
+            userScrollEnabled = true
         ) {
             items(fetchedItems) {
                 RickAndMortyCharacter(it)
